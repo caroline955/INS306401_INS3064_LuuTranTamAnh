@@ -1,0 +1,31 @@
+COMPREHENSIVE REVIEW: HTML AND GIT INTEGRATION
+Course Code: INS3064
+Learning Objectives
+This exercise synthesizes previously acquired skills (add, commit, push) while introducing 
+practical competencies (clone, GitHub Pages deployment) to publish a complete web product.
+Assignment Brief: "Clone and Customize an Advanced Portfolio"
+Requirements
+Repository Cloning
+Execute the command git clone 
+https://github.com/jigar-sable/Portfolio-Website
+to download the source code of a sample portfolio website to your local machine.
+Personalization
+Open the project in Visual Studio Code. Thoroughly review and modify all content within the 
+index.html file to replace the original author's information (Jigar Sable) with your personal 
+details, including name, photograph, biographical description, project showcases, and social 
+media links.
+New Repository Creation
+Navigate to your GitHub account and create a new repository named my-portfolio-final.
+Remote URL Modification
+Within the Terminal (from the cloned project directory), execute git remote set-url origin [YOUR￾NEW-REPO-URL] to redirect the project to your repository. If errors occur, you may first execute 
+git remote rm origin followed by git remote add origin [URL].
+Commit and Push Operations
+Perform the following sequence: git add ., git commit -m "Final Project: Personalize portfolio", 
+and git push -u origin main (or master) to upload your modified code to your new repository.
+Deployment via GitHub Pages (CRITICAL)
+Navigate to your GitHub repository (my-portfolio-final) and access Settings → Pages. Under the 
+"Build and deployment" section, select "Deploy from a branch" as your Source. In the Branch 
+section, select the main (or master) branch, choose /(root) as the directory, and click Save.
+After several minutes, GitHub will generate a public URL (example: https://YOUR￾USERNAME.github.io/my-portfolio-final/).
+SUBMISSION REQUIREMENT: Submit the GitHub Pages URL displaying your personalized 
+content to the designated Google Sheet (GIT PERSONAL tab).
