@@ -1,0 +1,38 @@
+-- 1. Tạo Database
+CREATE DATABASE library_db
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_unicode_ci;
+
+USE library_db;
+
+-- 2. Tạo table Độc giả (readers)
+CREATE TABLE readers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. Tạo table Sách (books)
+CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(100),
+    published_year INT,
+    quantity INT DEFAULT 0, -- Số lượng sách có trong kho
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Tạo table Phiếu mượn (borrow_records)
+CREATE TABLE borrow_records (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    reader_id INT NOT NULL,
+    book_id INT NOT NULL,
+    borrow_date DATE NOT NULL,
+    return_date DATE,
+    status ENUM('borrowed', 'returned', 'overdue') DEFAULT 'borrowed',
+    FOREIGN KEY (reader_id) REFERENCES readers(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);

@@ -1,0 +1,48 @@
+1. What is the difference between CHAR and VARCHAR?
+Both are used to store string data (text, characters), but how they allocate memory is completely different.
+
+CHAR (Character): A FIXED-length string (from 0 to 255 characters).
+ 
+Example: You declare a Student_Code column as CHAR(10). This means you've created a "box" with exactly 10 slots.
+
+How it works: If you enter the text "MIS" (3 characters), the system will automatically pad it with 7 blank spaces at the end to become "MIS       " so it fills up that exact "box".
+
+Use cases: Use this for data that always has the exact same length, such as: Student IDs (e.g., 23001234), Phone numbers, or License plates.
+
+VARCHAR (Variable Character): A VARIABLE-length string (from 0 to 65535 characters).
+
+Example: You declare a Name column as VARCHAR(50). This means you've created a "stretchy bag" that can hold a maximum of 50 characters.
+
+How it works: If you enter "Tâm Anh" (7 characters), it will only use exactly 7 spaces in memory, wasting absolutely nothing.
+
+Use cases: Use this for data where lengths fluctuate, such as: Full names, Home addresses, Emails, or Passwords.
+
+In short: Remember the mantra: "CHAR is a rigid box, VARCHAR is a stretchy bag."
+
+2. What is a PRIMARY KEY used for?
+In a database (let's say for a university), imagine there are 5 students all named "Nguyen Van A" and all born in 2005. How does the computer tell them apart when entering their grades?
+
+The answer is by using a PRIMARY KEY.
+
+Core Role: It is used to uniquely identify each specific row (record) in a table.
+
+2 Mandatory Rules of a Primary Key:
+
+UNIQUE: No two records are allowed to have the exact same primary key (e.g., Two students cannot share the same Student ID).
+
+NOT NULL: It must have a value (e.g., No student can enroll without being issued a Student ID).
+
+Real-life examples: Your Student ID (MSSV), Citizen ID Number, or Bank Account Number are all "Primary Keys" in the real world.
+
+3. How does AUTO_INCREMENT work?
+Definition: AUTO_INCREMENT is a feature that automatically counts and assigns a sequential numeric value to a column (usually the ID column set as the Primary Key) whenever a new record is added.
+
+How does it work in practice?
+
+Imagine going to the bank to get a queue number. You push a button, and the machine spits out a ticket with the number 1. The next person pushes it, and the machine gives them number 2. You don't have to figure out or write the number yourself.
+
+It’s the exact same in a Database. When you add a new employee to the users table, you don't need to manually check "Oh, what was the previous person's ID so I can add 1 to it?".
+
+You just command the system: INSERT INTO users (name) VALUES ('John').
+
+The MySQL system understands and automatically assigns John the ID of 1. When you add Jane, MySQL automatically gives her the ID of 2. It's incredibly convenient and guarantees there will never be duplicate IDs!
