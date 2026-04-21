@@ -1,0 +1,41 @@
+-- Tạo cơ sở dữ liệu
+CREATE DATABASE IF NOT EXISTS computer_management CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE computer_management;
+
+-- 1. Bảng computers (COMPUTER INVENTORY)
+CREATE TABLE IF NOT EXISTS computers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    computer_name VARCHAR(50) NOT NULL,
+    model VARCHAR(100) NOT NULL,
+    operating_system VARCHAR(50),
+    processor VARCHAR(50),
+    memory INT,
+    available BOOLEAN DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Bảng issues (ISSUE TRACKING)
+CREATE TABLE IF NOT EXISTS issues (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    computer_id INT NOT NULL,
+    reported_by VARCHAR(50),
+    reported_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    description TEXT NOT NULL,
+    urgency ENUM('Low', 'Medium', 'High') DEFAULT 'Medium',
+    status ENUM('Open', 'In Progress', 'Resolved') DEFAULT 'Open',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (computer_id) REFERENCES computers(id) ON DELETE CASCADE
+);
+
+-- Chèn 10 bản ghi mẫu cho bảng computers (5 Lab1, 5 Lab2)
+INSERT INTO computers (computer_name, model, operating_system, processor, memory, available) VALUES
+('Lab1-PC01', 'Dell Optiplex 7090', 'Windows 10 Pro', 'Intel Core i5-11400', 16, 1),
+('Lab1-PC02', 'Dell Optiplex 7090', 'Windows 10 Pro', 'Intel Core i5-11400', 16, 1),
+('Lab1-PC03', 'Dell Optiplex 7090', 'Windows 10 Pro', 'Intel Core i5-11400', 16, 0),
+('Lab1-PC04', 'Dell Optiplex 7090', 'Windows 10 Pro', 'Intel Core i5-11400', 8, 1),
+('Lab1-PC05', 'Dell Optiplex 7090', 'Windows 10 Pro', 'Intel Core i5-11400', 16, 1),
+('Lab2-PC01', 'HP ProDesk 400', 'Windows 11 Pro', 'Intel Core i7-10700', 32, 1),
+('Lab2-PC02', 'HP ProDesk 400', 'Windows 11 Pro', 'Intel Core i7-10700', 32, 1),
+('Lab2-PC03', 'HP ProDesk 400', 'Windows 11 Pro', 'Intel Core i7-10700', 16, 1),
+('Lab2-PC04', 'HP ProDesk 400', 'Windows 11 Pro', 'Intel Core i7-10700', 32, 0),
+('Lab2-PC05', 'HP ProDesk 400', 'Windows 11 Pro', 'Intel Core i7-10700', 16, 1);
